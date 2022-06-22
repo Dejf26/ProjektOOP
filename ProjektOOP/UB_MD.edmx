@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UbezpieczalniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Platnosci">
+          <Key>
+            <PropertyRef Name="Id_platnosci" />
+          </Key>
+          <Property Name="Id_platnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Czy_oplacona" Type="char" MaxLength="3" />
+          <Property Name="Id_polisy" Type="int" />
+        </EntityType>
+        <EntityType Name="Pojazdy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Nr_rejestracyjny" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Nr_VIN" Type="varchar" MaxLength="30" />
+          <Property Name="Id_wlasciciela" Type="int" />
+        </EntityType>
+        <EntityType Name="Polisy">
+          <Key>
+            <PropertyRef Name="Id_polisy" />
+          </Key>
+          <Property Name="Id_polisy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod_pakietu" Type="char" MaxLength="7" />
+          <Property Name="Data_zawarcia" Type="date" />
+          <Property Name="Id_wlasciciela" Type="int" />
+          <Property Name="Id_pojazdu" Type="int" />
+        </EntityType>
+        <EntityType Name="Wlasciciele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="30" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="PESEL" Type="char" MaxLength="11" />
+        </EntityType>
+        <Association Name="FK__Platnosci__Id_po__45F365D3">
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="0..1" />
+          <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polisy">
+              <PropertyRef Name="Id_polisy" />
+            </Principal>
+            <Dependent Role="Platnosci">
+              <PropertyRef Name="Id_polisy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pojazdy__Id_wlas__3B75D760">
+          <End Role="Wlasciciele" Type="Self.Wlasciciele" Multiplicity="0..1" />
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wlasciciele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pojazdy">
+              <PropertyRef Name="Id_wlasciciela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Polisy__Id_pojaz__4316F928">
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="0..1" />
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazdy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Polisy">
+              <PropertyRef Name="Id_pojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Polisy__Id_wlasc__4222D4EF">
+          <End Role="Wlasciciele" Type="Self.Wlasciciele" Multiplicity="0..1" />
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wlasciciele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Polisy">
+              <PropertyRef Name="Id_wlasciciela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UbezpieczalniaModelStoreContainer">
+          <EntitySet Name="Platnosci" EntityType="Self.Platnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pojazdy" EntityType="Self.Pojazdy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polisy" EntityType="Self.Polisy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wlasciciele" EntityType="Self.Wlasciciele" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Platnosci__Id_po__45F365D3" Association="Self.FK__Platnosci__Id_po__45F365D3">
+            <End Role="Polisy" EntitySet="Polisy" />
+            <End Role="Platnosci" EntitySet="Platnosci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pojazdy__Id_wlas__3B75D760" Association="Self.FK__Pojazdy__Id_wlas__3B75D760">
+            <End Role="Wlasciciele" EntitySet="Wlasciciele" />
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Polisy__Id_pojaz__4316F928" Association="Self.FK__Polisy__Id_pojaz__4316F928">
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+            <End Role="Polisy" EntitySet="Polisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Polisy__Id_wlasc__4222D4EF" Association="Self.FK__Polisy__Id_wlasc__4222D4EF">
+            <End Role="Wlasciciele" EntitySet="Wlasciciele" />
+            <End Role="Polisy" EntitySet="Polisy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UbezpieczalniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Platnosci">
+          <Key>
+            <PropertyRef Name="Id_platnosci" />
+          </Key>
+          <Property Name="Id_platnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Czy_oplacona" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Id_polisy" Type="Int32" />
+          <NavigationProperty Name="Polisy" Relationship="Self.FK__Platnosci__Id_po__45F365D3" FromRole="Platnosci" ToRole="Polisy" />
+        </EntityType>
+        <EntityType Name="Pojazdy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nr_rejestracyjny" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nr_VIN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Id_wlasciciela" Type="Int32" />
+          <NavigationProperty Name="Wlasciciele" Relationship="Self.FK__Pojazdy__Id_wlas__3B75D760" FromRole="Pojazdy" ToRole="Wlasciciele" />
+          <NavigationProperty Name="Polisy" Relationship="Self.FK__Polisy__Id_pojaz__4316F928" FromRole="Pojazdy" ToRole="Polisy" />
+        </EntityType>
+        <EntityType Name="Polisy">
+          <Key>
+            <PropertyRef Name="Id_polisy" />
+          </Key>
+          <Property Name="Id_polisy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod_pakietu" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="Data_zawarcia" Type="DateTime" Precision="0" />
+          <Property Name="Id_wlasciciela" Type="Int32" />
+          <Property Name="Id_pojazdu" Type="Int32" />
+          <NavigationProperty Name="Platnosci" Relationship="Self.FK__Platnosci__Id_po__45F365D3" FromRole="Polisy" ToRole="Platnosci" />
+          <NavigationProperty Name="Pojazdy" Relationship="Self.FK__Polisy__Id_pojaz__4316F928" FromRole="Polisy" ToRole="Pojazdy" />
+          <NavigationProperty Name="Wlasciciele" Relationship="Self.FK__Polisy__Id_wlasc__4222D4EF" FromRole="Polisy" ToRole="Wlasciciele" />
+        </EntityType>
+        <EntityType Name="Wlasciciele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PESEL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Pojazdy" Relationship="Self.FK__Pojazdy__Id_wlas__3B75D760" FromRole="Wlasciciele" ToRole="Pojazdy" />
+          <NavigationProperty Name="Polisy" Relationship="Self.FK__Polisy__Id_wlasc__4222D4EF" FromRole="Wlasciciele" ToRole="Polisy" />
+        </EntityType>
+        <Association Name="FK__Platnosci__Id_po__45F365D3">
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="0..1" />
+          <End Role="Platnosci" Type="Self.Platnosci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Polisy">
+              <PropertyRef Name="Id_polisy" />
+            </Principal>
+            <Dependent Role="Platnosci">
+              <PropertyRef Name="Id_polisy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pojazdy__Id_wlas__3B75D760">
+          <End Role="Wlasciciele" Type="Self.Wlasciciele" Multiplicity="0..1" />
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wlasciciele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pojazdy">
+              <PropertyRef Name="Id_wlasciciela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Polisy__Id_pojaz__4316F928">
+          <End Role="Pojazdy" Type="Self.Pojazdy" Multiplicity="0..1" />
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazdy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Polisy">
+              <PropertyRef Name="Id_pojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Polisy__Id_wlasc__4222D4EF">
+          <End Role="Wlasciciele" Type="Self.Wlasciciele" Multiplicity="0..1" />
+          <End Role="Polisy" Type="Self.Polisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wlasciciele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Polisy">
+              <PropertyRef Name="Id_wlasciciela" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UbezpieczalniaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Platnosci" EntityType="Self.Platnosci" />
+          <EntitySet Name="Pojazdy" EntityType="Self.Pojazdy" />
+          <EntitySet Name="Polisy" EntityType="Self.Polisy" />
+          <EntitySet Name="Wlasciciele" EntityType="Self.Wlasciciele" />
+          <AssociationSet Name="FK__Platnosci__Id_po__45F365D3" Association="Self.FK__Platnosci__Id_po__45F365D3">
+            <End Role="Polisy" EntitySet="Polisy" />
+            <End Role="Platnosci" EntitySet="Platnosci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pojazdy__Id_wlas__3B75D760" Association="Self.FK__Pojazdy__Id_wlas__3B75D760">
+            <End Role="Wlasciciele" EntitySet="Wlasciciele" />
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Polisy__Id_pojaz__4316F928" Association="Self.FK__Polisy__Id_pojaz__4316F928">
+            <End Role="Pojazdy" EntitySet="Pojazdy" />
+            <End Role="Polisy" EntitySet="Polisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Polisy__Id_wlasc__4222D4EF" Association="Self.FK__Polisy__Id_wlasc__4222D4EF">
+            <End Role="Wlasciciele" EntitySet="Wlasciciele" />
+            <End Role="Polisy" EntitySet="Polisy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UbezpieczalniaModelStoreContainer" CdmEntityContainer="UbezpieczalniaEntities">
+          <EntitySetMapping Name="Platnosci">
+            <EntityTypeMapping TypeName="UbezpieczalniaModel.Platnosci">
+              <MappingFragment StoreEntitySet="Platnosci">
+                <ScalarProperty Name="Id_platnosci" ColumnName="Id_platnosci" />
+                <ScalarProperty Name="Czy_oplacona" ColumnName="Czy_oplacona" />
+                <ScalarProperty Name="Id_polisy" ColumnName="Id_polisy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pojazdy">
+            <EntityTypeMapping TypeName="UbezpieczalniaModel.Pojazdy">
+              <MappingFragment StoreEntitySet="Pojazdy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Nr_rejestracyjny" ColumnName="Nr_rejestracyjny" />
+                <ScalarProperty Name="Nr_VIN" ColumnName="Nr_VIN" />
+                <ScalarProperty Name="Id_wlasciciela" ColumnName="Id_wlasciciela" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polisy">
+            <EntityTypeMapping TypeName="UbezpieczalniaModel.Polisy">
+              <MappingFragment StoreEntitySet="Polisy">
+                <ScalarProperty Name="Id_polisy" ColumnName="Id_polisy" />
+                <ScalarProperty Name="Kod_pakietu" ColumnName="Kod_pakietu" />
+                <ScalarProperty Name="Data_zawarcia" ColumnName="Data_zawarcia" />
+                <ScalarProperty Name="Id_wlasciciela" ColumnName="Id_wlasciciela" />
+                <ScalarProperty Name="Id_pojazdu" ColumnName="Id_pojazdu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wlasciciele">
+            <EntityTypeMapping TypeName="UbezpieczalniaModel.Wlasciciele">
+              <MappingFragment StoreEntitySet="Wlasciciele">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
