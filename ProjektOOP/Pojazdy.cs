@@ -11,24 +11,35 @@ namespace ProjektOOP
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Pojazdy
     {
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pojazdy()
         {
             this.Polisy = new HashSet<Polisy>();
         }
-    
+
         public int Id { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
         public string Nr_rejestracyjny { get; set; }
         public string Nr_VIN { get; set; }
         public Nullable<int> Id_wlasciciela { get; set; }
-    
+
         public virtual Wlasciciele Wlasciciele { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Polisy> Polisy { get; set; }
+  
+
+    
     }
+
+   
+
+
 }

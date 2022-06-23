@@ -74,7 +74,8 @@ namespace ProjektOOP
             UbezpieczalniaEntities db = new UbezpieczalniaEntities();
 
             this.GridOfWlasciciele.ItemsSource = db.Wlasciciele.ToList();
-
+            GridOfWlasciciele.Columns[4].Visibility = Visibility.Hidden;
+            GridOfWlasciciele.Columns[5].Visibility = Visibility.Hidden;
             MessageBox.Show("Odświeżono wyniki");
 
         }

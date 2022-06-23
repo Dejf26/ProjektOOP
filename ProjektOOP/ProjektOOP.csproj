@@ -111,6 +111,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UB_MD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Vechicles.xaml.cs">
+      <DependentUpon>Vechicles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wlasciciele.cs">
       <DependentUpon>UB_MD.tt</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ubezp1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vechicles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

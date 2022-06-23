@@ -20,9 +20,21 @@ namespace ProjektOOP
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void BtnNewCustomerWindow(object sender, RoutedEventArgs e) => new Vechicles().Show();
+
+        private void BtnNewBookWindow(object sender, RoutedEventArgs e) => new Ubezp1().Show();
+
+
+        private void BtnStatusWindow(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

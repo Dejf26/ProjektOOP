@@ -1,0 +1,56 @@
+﻿<Window x:Class="ProjektOOP.Vechicles"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektOOP"
+        mc:Ignorable="d"
+        Title="Vechicles" Height="450" Width="800">
+    <Grid Background="SkyBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="356*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="VechiclesGrid" HorizontalAlignment="Left" Height="137" Margin="32,273,0,0" VerticalAlignment="Top" Width="549" SelectionChanged="VechiclesGrid_SelectionChanged" Grid.ColumnSpan="2"/>
+
+        <Label Content="Marka:" HorizontalAlignment="Left" Margin="56,34,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtMarka" HorizontalAlignment="Left" Height="23" Margin="43.335,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <Label Content="Model" HorizontalAlignment="Left" Margin="56,62,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtModel" HorizontalAlignment="Left" Height="23" Margin="43.335,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <Label Content="Nr rej." HorizontalAlignment="Left" Margin="56,90,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtRej" HorizontalAlignment="Left" Height="23" Margin="43.335,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <Label Content="Nr VIN" HorizontalAlignment="Left" Margin="56,117,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtVIN" HorizontalAlignment="Left" Height="23" Margin="43.335,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <Label Content="ID właść." HorizontalAlignment="Left" Margin="56,145,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtIDW" HorizontalAlignment="Left" Height="23" Margin="43.335,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+        <Button Content="Dodaj" x:Name="buttonAdd" HorizontalAlignment="Left" Margin="88.4,182,0,0" VerticalAlignment="Top" Width="75" Click="buttonAdd_Click" Grid.Column="1"/>
+
+        <Button Content="Odśwież" x:Name="buttonRefresh" HorizontalAlignment="Left" Margin="32,232,0,0" VerticalAlignment="Top" Width="75" Click="buttonRefresh_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Usuń" x:Name="buttonDelete" HorizontalAlignment="Left" Margin="424.335,232,0,0" VerticalAlignment="Top" Width="75" Click="buttonDelete_Click" Grid.Column="1"/>
+        <Label Content="Pojazdy" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="504.335,47,0,0" Height="59" Width="170" FontSize="30" FontStyle="Italic" Grid.Column="1"/>
+       
+        <Label Content="Marka:" HorizontalAlignment="Left" Margin="513.4,243,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.Column="1"/>
+        <TextBox x:Name="txtMarka2" HorizontalAlignment="Left" Height="23" Margin="581.4,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        
+        <Label Content="Model" HorizontalAlignment="Left" Margin="513.4,271,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.Column="1"/>
+        <TextBox x:Name="txtModel2" HorizontalAlignment="Left" Height="23" Margin="581.4,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+       
+        <Label Content="Nr rej." HorizontalAlignment="Left" Margin="513.4,299,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.Column="1"/>
+        <TextBox x:Name="txtRej2" HorizontalAlignment="Left" Height="23" Margin="581.4,303,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+       
+        <Label Content="Nr VIN" HorizontalAlignment="Left" Margin="513.4,326,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.Column="1"/>
+        <TextBox x:Name="txtVIN2" HorizontalAlignment="Left" Height="23" Margin="581.4,330,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        
+        <Label Content="ID właść." HorizontalAlignment="Left" Margin="513.4,354,0,0" VerticalAlignment="Top" Width="189" Height="32" Grid.Column="1"/>
+        <TextBox x:Name="txtIDW2" HorizontalAlignment="Left" Height="23" Margin="581.4,359,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+       
+        <Button Content="Zmień" x:Name="buttonChange" HorizontalAlignment="Left" Margin="627.4,391,0,0" VerticalAlignment="Top" Width="75" Click="buttonChange_Click" Grid.Column="1"/>
+
+
+    </Grid>
+</Window>
