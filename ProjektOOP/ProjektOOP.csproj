@@ -90,6 +90,9 @@
     <Compile Include="Pojazdy.cs">
       <DependentUpon>UB_MD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Policies.xaml.cs">
+      <DependentUpon>Policies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Polisy.cs">
       <DependentUpon>UB_MD.tt</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Policies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ubezp1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

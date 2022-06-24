@@ -65,11 +65,16 @@ namespace ProjektOOP
 
             };
 
-            MessageBox.Show("Dodano pojazd");
+           
 
             db.Pojazdy.Add(VehObj);
             db.SaveChanges();
+
+       
             this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();
+            VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
+            VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
+            MessageBox.Show("Dodano pojazd");
 
         }
 
@@ -154,13 +159,14 @@ namespace ProjektOOP
                 obj.Nr_VIN = this.txtVIN2.Text;
                 obj.Id_wlasciciela = int.Parse(this.txtIDW2.Text);
 
-                MessageBox.Show("Zmieniono dane");
 
             }
             db.SaveChanges();
             this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();
+            VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
+            VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
+            MessageBox.Show("Zmieniono dane");
 
-         
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
@@ -187,11 +193,13 @@ namespace ProjektOOP
                 {
                     db.Pojazdy.Remove(obj);
                     db.SaveChanges();
-                    MessageBox.Show("Usunięto");
+                   
 
                 }
                 this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();
-
+                VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
+                VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
+                MessageBox.Show("Usunięto");
             }
         }
 

@@ -59,11 +59,15 @@ namespace ProjektOOP
 
             };
 
-            MessageBox.Show("Dodano właściciela");
+
 
             db.Wlasciciele.Add(WlascObj);
             db.SaveChanges();
+
             this.GridOfWlasciciele.ItemsSource = db.Wlasciciele.ToList();
+            GridOfWlasciciele.Columns[4].Visibility = Visibility.Hidden;
+            GridOfWlasciciele.Columns[5].Visibility = Visibility.Hidden;
+            MessageBox.Show("Dodano właściciela");
 
         }
 
@@ -131,11 +135,13 @@ namespace ProjektOOP
                 obj.Imie = this.txtName2.Text;
                 obj.Nazwisko = this.txtNazwisko2.Text;
                 obj.PESEL = this.txtPESEL2.Text;
-                MessageBox.Show("Zmieniono dane");
 
             }
             db.SaveChanges();
             this.GridOfWlasciciele.ItemsSource = db.Wlasciciele.ToList();
+            GridOfWlasciciele.Columns[4].Visibility = Visibility.Hidden;
+            GridOfWlasciciele.Columns[5].Visibility = Visibility.Hidden;
+            MessageBox.Show("Zmieniono dane");
 
         }
 
@@ -163,10 +169,12 @@ namespace ProjektOOP
                 {
                     db.Wlasciciele.Remove(obj);
                     db.SaveChanges();
-                    MessageBox.Show("Usunięto");
 
                 }
                 this.GridOfWlasciciele.ItemsSource = db.Wlasciciele.ToList();
+                GridOfWlasciciele.Columns[4].Visibility = Visibility.Hidden;
+                GridOfWlasciciele.Columns[5].Visibility = Visibility.Hidden;
+                MessageBox.Show("Usunięto");
 
             }
         }
