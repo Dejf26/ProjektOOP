@@ -21,20 +21,51 @@ namespace ProjektOOP
     public partial class MainWindow : Window
     {
 
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void BtnNewCustomerWindow(object sender, RoutedEventArgs e) => new Vechicles().Show();
 
-        private void BtnNewBookWindow(object sender, RoutedEventArgs e) => new Ubezp1().Show();
-
-
-        private void BtnStatusWindow(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Ubezp1 window = new Ubezp1();
+            Application.Current.MainWindow = window;
+            window.InitializeComponent();
+            window.Show();
+       
+        
+        
+        
+        
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            Vechicles window = new Vechicles();
+            Application.Current.MainWindow = window;
+            window.InitializeComponent();
+            window.Show();
 
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Policies window = new Policies();
+            Application.Current.MainWindow = window;
+            window.InitializeComponent();
+            window.Show();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Payments window = new Payments();
+            Application.Current.MainWindow = window;
+            window.InitializeComponent();
+            window.Show();
+        }
     }
+
 }

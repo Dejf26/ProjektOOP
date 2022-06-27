@@ -11,7 +11,7 @@ namespace ProjektOOP
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Polisy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace ProjektOOP
         {
             this.Platnosci = new HashSet<Platnosci>();
         }
-    
+
         public int Id_polisy { get; set; }
         public string Kod_pakietu { get; set; }
         public Nullable<System.DateTime> Data_zawarcia { get; set; }

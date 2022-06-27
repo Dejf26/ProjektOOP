@@ -51,6 +51,8 @@ namespace ProjektOOP
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
+            try { 
+            
             UbezpieczalniaEntities db = new UbezpieczalniaEntities();
             Polisy PolObj = new Polisy()
             {
@@ -74,6 +76,12 @@ namespace ProjektOOP
 
             MessageBox.Show("Dodano polisę");
 
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Błędne ID pojazdu / własciciela");
+            }
         }
 
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
@@ -130,7 +138,6 @@ namespace ProjektOOP
                 }
                 catch (InvalidCastException) { }
             }
-
 
 
         }

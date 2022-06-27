@@ -53,29 +53,41 @@ namespace ProjektOOP
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            UbezpieczalniaEntities db = new UbezpieczalniaEntities();
-            Pojazdy VehObj = new Pojazdy()
+
+            try
             {
-                Marka = txtMarka.Text,
-                Model = txtModel.Text,
-                Nr_rejestracyjny = txtRej.Text,
-                Nr_VIN = txtVIN.Text,
-                Id_wlasciciela = int.Parse(txtIDW.Text)
 
 
-            };
+                UbezpieczalniaEntities db = new UbezpieczalniaEntities();
+                Pojazdy VehObj = new Pojazdy()
+                {
+                    Marka = txtMarka.Text,
+                    Model = txtModel.Text,
+                    Nr_rejestracyjny = txtRej.Text,
+                    Nr_VIN = txtVIN.Text,
+                    Id_wlasciciela = int.Parse(txtIDW.Text)
 
-           
 
-            db.Pojazdy.Add(VehObj);
-            db.SaveChanges();
+                };
 
-       
-            this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();
-            VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
-            VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
-            MessageBox.Show("Dodano pojazd");
 
+
+                db.Pojazdy.Add(VehObj);
+                db.SaveChanges();
+
+
+                this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();
+                VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
+                VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
+                MessageBox.Show("Dodano pojazd");
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Błędne ID właściciela");
+            }
         }
 
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
@@ -90,7 +102,7 @@ namespace ProjektOOP
             VechiclesGrid.Columns[6].Visibility = Visibility.Hidden;
             VechiclesGrid.Columns[7].Visibility = Visibility.Hidden;
             MessageBox.Show("Odświeżono wyniki");
-          
+
 
         }
 
@@ -104,8 +116,8 @@ namespace ProjektOOP
         {
 
 
-          
-        
+
+
 
 
 
@@ -137,7 +149,7 @@ namespace ProjektOOP
         }
 
 
-   
+
 
         private void buttonChange_Click(object sender, RoutedEventArgs e)
         {
@@ -193,7 +205,7 @@ namespace ProjektOOP
                 {
                     db.Pojazdy.Remove(obj);
                     db.SaveChanges();
-                   
+
 
                 }
                 this.VechiclesGrid.ItemsSource = db.Pojazdy.ToList();

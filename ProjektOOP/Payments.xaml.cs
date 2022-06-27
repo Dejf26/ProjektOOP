@@ -49,26 +49,36 @@ namespace ProjektOOP
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            UbezpieczalniaEntities db = new UbezpieczalniaEntities();
-            Platnosci PayObj = new Platnosci()
+
+            try
             {
-                Czy_oplacona = txtOplac.Text.ToUpper(),
-                Id_polisy = int.Parse(txtIDP.Text)
+                UbezpieczalniaEntities db = new UbezpieczalniaEntities();
+                Platnosci PayObj = new Platnosci()
+                {
+                    Czy_oplacona = txtOplac.Text.ToUpper(),
+                    Id_polisy = int.Parse(txtIDP.Text)
 
-            };
-
-
-
-            db.Platnosci.Add(PayObj);
-            db.SaveChanges();
+                };
 
 
-            this.PaymentsGrid.ItemsSource = db.Platnosci.ToList();
-            PaymentsGrid.Columns[3].Visibility = Visibility.Hidden;
+
+                db.Platnosci.Add(PayObj);
+                db.SaveChanges();
 
 
-            MessageBox.Show("Dodano płatność");
+                this.PaymentsGrid.ItemsSource = db.Platnosci.ToList();
+                PaymentsGrid.Columns[3].Visibility = Visibility.Hidden;
 
+
+                MessageBox.Show("Dodano płatność");
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Błędne ID polisy");
+       
+            }
+      
         }
 
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
@@ -153,7 +163,7 @@ namespace ProjektOOP
             db.SaveChanges();
             this.PaymentsGrid.ItemsSource = db.Platnosci.ToList();
             PaymentsGrid.Columns[3].Visibility = Visibility.Hidden;
-         
+
 
             MessageBox.Show("Zmieniono dane");
 
@@ -188,7 +198,7 @@ namespace ProjektOOP
                 }
                 this.PaymentsGrid.ItemsSource = db.Platnosci.ToList();
                 PaymentsGrid.Columns[3].Visibility = Visibility.Hidden;
-              
+
 
                 MessageBox.Show("Usunięto");
             }
